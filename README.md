@@ -1,6 +1,6 @@
 # NFT Showcase
 
-Welcome to NFT Showcase! This is a web application that showcases NFTs owned by me. The website is developed using only HTML, CSS, and JavaScript.
+Welcome to NFT Showcase! This is a web application that showcases NFTs owned by me. [LINK](https://batsnuff.github.io/NFT-Showcase/)
 
 ## Features
 
@@ -8,6 +8,10 @@ Welcome to NFT Showcase! This is a web application that showcases NFTs owned by 
 - Responsive design to fit different screen sizes
 - Interactive elements such as buttons and hover effects
 - Easy navigation using the menu bar
+
+## Technologies
+
+The website is developed using only HTML, CSS, and JavaScript.
 
 ## Future Plans
 
