@@ -1,5 +1,28 @@
-.showcase__icon--DC {
-  background-image: url('images/Funko Pop/DC/icon.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+.showcase__summary {
+  background-color: goldenrod;
+  border: 2px solid black;
+  color: purple;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 30px;
+  margin: 10px 30px;
+  cursor: pointer;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+}
+
+table,
+th,
+td {
+  border: 2px solid #cecece;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+  border: none;
 }
