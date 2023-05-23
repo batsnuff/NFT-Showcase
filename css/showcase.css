@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: centerS;
+    align-items: center;
     padding: 10px;
 }
 
@@ -19,4 +19,3 @@
     font-weight: bold;
     cursor: pointer;
 }
-
