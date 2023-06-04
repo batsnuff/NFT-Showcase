@@ -1,0 +1,51 @@
+#counter {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  color: gold;
+  background-color: #baaeba;
+  padding: 10px;
+  }
+
+#incrementButton {
+  box-shadow: inset 12px 7px 7px 4px #86a8b3;
+  background: linear-gradient(to bottom, #ad85ad 5%, #000000 100%);
+  background-color: #ad85ad;
+  border-radius: 38px;
+  border: 7px solid #856d85;
+  display: inline-block;
+  cursor: pointer;
+  color: goldenrod;
+  font-family: Arial;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 11px 48px;
+  text-decoration: none;
+  text-shadow: 3px 3px 2px #6b72a3;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -7%);
+}
+
+#incrementButton:hover {
+  background: linear-gradient(to bottom, #000000 5%, #ad85ad 100%);
+  background-color: #000000;
+}
+
+#incrementButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.footer__text {
+  font-size: 22pt;
+  color: #baaeba;
+  text-align: center;
+  padding: 18px 0;
+  margin: 7px 0 10px 0;
+  box-shadow: 0 0 5px #000;
+  border: 4px dashed #20bcd5;
+  padding: 10px;
+  font-weight: bold;
+}
