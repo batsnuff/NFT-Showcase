@@ -24,3 +24,30 @@ summary:-moz-details-marker {
 summary::-ms-details-marker {
   display: none;
 }
+
+/* Media queries dla urządzeń mobilnych */
+@media only screen and (max-width: 480px) {
+  /* Style dla urządzeń o szerokości do 480px (np. smartfony w orientacji pionowej) */
+
+  /* Miejsce na Twoje dostosowane style dla mobilnych urządzeń */
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Style dla urządzeń o szerokości od 481px do 768px (np. smartfony w orientacji poziomej lub tablety) */
+
+  /* Miejsce na Twoje dostosowane style dla tabletów i większych smartfonów */
+}
+
+/* Jeśli chcesz uwzględnić również większe urządzenia, możesz dodać kolejne media queries */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Style dla urządzeń o szerokości od 769px do 1024px (np. większe tablety lub monitory o niskiej rozdzielczości) */
+
+  /* Miejsce na Twoje dostosowane style dla większych tabletów i mniejszych monitorów */
+}
+
+/* Media queries dla większych urządzeń desktopowych */
+@media only screen and (min-width: 1025px) {
+  /* Style dla urządzeń o szerokości większej niż 1024px (np. monitory desktopowe) */
+
+  /* Miejsce na Twoje dostosowane style dla desktopowych urządzeń */
+}
