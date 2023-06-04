@@ -1,0 +1,33 @@
+.header__tittle {
+  font-size: 22pt;
+  color: #baaeba;
+  text-align: center;
+  padding: 18px 0;
+  margin: 7px 0 10px 0;
+  box-shadow: 0 0 5px #000;
+  border: 4px dashed #20bcd5;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.header__welcome {
+  font-size: 52pt;
+  color: #baaeba;
+  text-align: center;
+  padding: 18px 0;
+  margin: 7px 0 10px 0;
+  box-shadow: 0 0 36px #e9ca03;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.header__text {
+  font-size: 32pt;
+  color: #baaeba;
+  text-align: center;
+  padding: 18px 0;
+  margin: 7px 0 10px 0;
+  box-shadow: 0 -8px 26px #e9ca03;
+  padding: 10px;
+  font-weight: bold;
+}
