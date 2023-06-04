@@ -1,24 +1,25 @@
-// Pobierz elementy
+let count = 0;
 const counterElement = document.getElementById('counter');
 const incrementButton = document.getElementById('incrementButton');
 
-// Ustaw początkową wartość licznika
-let count = 0;
-
-// Funkcja do aktualizacji licznika
 function updateCounter() {
   counterElement.textContent = count;
 }
 
-// Funkcja do zwiększania licznika
 function incrementCounter() {
   count++;
   updateCounter();
+  
+  // Store the count value in localStorage
+  localStorage.setItem('visitorCount', count);
 }
 
-// Przypisz funkcję do obsługi kliknięcia przycisku
 incrementButton.addEventListener('click', incrementCounter);
 
-// Zaktualizuj licznik na starcie
-updateCounter();
+// Check if the count value is already stored in localStorage
+if (localStorage.getItem('visitorCount')) {
+  count = parseInt(localStorage.getItem('visitorCount'));
+}
 
+// Update the counter value on the page
+updateCounter();
