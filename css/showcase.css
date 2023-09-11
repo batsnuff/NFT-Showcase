@@ -4,13 +4,11 @@
   grid-gap: 20px;
 }
 
-.showcase__item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+.showcase__container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 70px;
 }
-
 
 .showcase__summary {
     margin-bottom: 10px;
