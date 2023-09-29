@@ -4,14 +4,15 @@
   align-items: center;
 }
 
-.showcase__container{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 70px;
+.showcase__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 70px;
 }
 
 .showcase__summary {
-    margin-bottom: 10px;
-    font-weight: bold;
-    cursor: pointer;
+  margin-bottom: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
