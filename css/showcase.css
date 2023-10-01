@@ -1,15 +1,15 @@
 .video-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Wybierz liczbę kolumn, które chcesz wyświetlić */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 40px; /* Odstęp między elementami */
-  padding: 43px;
+  padding: 34px;
 }
 
 .video-item {
   position: relative;
 }
 
-video {
+ video {
   width: 100%;
   height: auto;
   display: block;
@@ -25,4 +25,39 @@ video {
 
 .video-item video:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.video-item video::-webkit-media-controls {
+  display: flex !important;
+}
+
+.video-item video::-webkit-media-controls-panel {
+  display: flex !important;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.video-item video::-webkit-media-controls-play-button,
+.video-item video::-webkit-media-controls-mute-button,
+.video-item video::-webkit-media-controls-volume-slider {
+  display: block !important;
+}
+
+.video-item video::-webkit-media-controls-timeline {
+  display: flex !important;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 5px 0;
+}
+
+.video-item video::-webkit-media-controls-current-time-display,
+.video-item video::-webkit-media-controls-time-remaining-display {
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 5px;
 }
