@@ -66,12 +66,11 @@ video {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15%;
-
+  height: 500px;
+  padding-bottom: 3px;
 }
 
 #last-video video {
-  max-width: 20%;
   border: 3px solid #e9ca03;
   box-sizing: border-box;
 }
