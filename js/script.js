@@ -2,7 +2,7 @@ let count = 0;
 const counterElement = document.getElementById("counter");
 const incrementButton = document.getElementById("incrementButton");
 
-// Dodajemy modale i przyciski zamykające modale
+// Add modals and modal close buttons
 let modal = document.getElementById("myModal");
 let alreadyClickedModal = document.getElementById("alreadyClickedModal");
 let span = document.getElementsByClassName("close")[0];
@@ -15,25 +15,25 @@ function updateCounter() {
 }
 
 function incrementCounter() {
-  // Sprawdź, czy 'hasClicked' istnieje w localStorage
+  // Check if 'hasClicked' exists in localStorage
   if (localStorage.getItem("hasClicked")) {
-    // Jeśli istnieje, wyświetl modal "You did it! 😏"
+    // If it exists, display the "You did it! 😏" modal
     alreadyClickedModal.style.display = "block";
   } else {
-    // Jeśli nie istnieje, zwiększ licznik i zapisz 'hasClicked' w localStorage
+    // If it doesn't exist, increment the counter and store 'hasClicked' in localStorage
     count++;
     updateCounter();
 
     // Store the count value in localStorage
     localStorage.setItem("visitorCount", count);
 
-    // Wyświetl modal "Thank you! 😁"
+    // Display the "Thank you! 😁" modal
     modal.style.display = "block";
 
-    // Wyłącz przycisk
+    // Disable the button
     incrementButton.disabled = true;
 
-    // Zapisz 'hasClicked' w localStorage
+    // Store 'hasClicked' in localStorage
     localStorage.setItem("hasClicked", true);
   }
 }
