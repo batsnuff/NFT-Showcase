@@ -20,32 +20,13 @@ function incrementCounter() {
     // If it exists, display the "You did it! 😏" modal
     alreadyClickedModal.style.display = "block";
   } else {
-    // If it doesn't exist, increment the counter and store 'hasClicked' in localStorage
+    // If it doesn't exist, increment the counter and display the modal
     count++;
-    updateCounter();
-
-    // Store the count value in localStorage
-    localStorage.setItem("visitorCount", count);
-
-    // Display the "Thank you! 😁" modal
-    modal.style.display = "block";
-
-    // Disable the button
-    incrementButton.disabled = true;
-
-    // Store 'hasClicked' in localStorage
     localStorage.setItem("hasClicked", true);
+    updateCounter();
+    modal.style.display = "block";
   }
 }
-
-// When the user clicks on <span> (x), close the modals
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-alreadyClickedSpan.onclick = function () {
-  alreadyClickedModal.style.display = "none";
-};
 
 // When the user clicks anywhere outside of the modals, close them
 window.onclick = function (event) {
