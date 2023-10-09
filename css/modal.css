@@ -12,21 +12,29 @@
 
 .modal-content {
   position: relative;
-  background-color: #fefefe;
+  background-color: #b7b0b0;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 3px solid #f1f1f1;
   width: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s;
+  animation-name: modalAnimation;
+  animation-duration: 1.3s;
   border-radius: 12px;
   text-align: center;
+  transition: transform 0.3s;
+}
+
+.modal-content:hover {
+  transform: scale(1.05);
 }
 
 .modal-content p {
-  font-size: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 70px;
   font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .close,
@@ -51,16 +59,11 @@
     transform: scale(0);
     opacity: 0;
   }
-  85% {
-    transform: scale(1.05);
+  50% {
+    transform: scale(1.1);
     opacity: 1;
   }
   100% {
     transform: scale(1);
   }
-}
-
-.modal-content {
-  animation-name: modalAnimation;
-  animation-duration: 0.5s;
 }
