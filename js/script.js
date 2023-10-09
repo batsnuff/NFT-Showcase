@@ -14,6 +14,17 @@ function updateCounter() {
   counterElement.textContent = count;
 }
 
+// Check if the count value is already stored in localStorage
+if (localStorage.getItem("visitorCount")) {
+  count = parseInt(localStorage.getItem("visitorCount"));
+} else {
+  // If it's not stored, save the count value in localStorage
+  localStorage.setItem("visitorCount", count);
+}
+
+// Update the counter value on the page
+updateCounter();
+
 function incrementCounter() {
   // Check if 'hasClicked' exists in localStorage
   if (localStorage.getItem("hasClicked")) {
@@ -23,6 +34,7 @@ function incrementCounter() {
     // If it doesn't exist, increment the counter and display the modal
     count++;
     localStorage.setItem("hasClicked", true);
+    localStorage.setItem("visitorCount", count); // Update the count value in localStorage
     updateCounter();
     modal.style.display = "block";
   }
@@ -37,13 +49,5 @@ window.onclick = function (event) {
     alreadyClickedModal.style.display = "none";
   }
 };
-
-// Check if the count value is already stored in localStorage
-if (localStorage.getItem("visitorCount")) {
-  count = parseInt(localStorage.getItem("visitorCount"));
-}
-
-// Update the counter value on the page
-updateCounter();
 
 incrementButton.addEventListener("click", incrementCounter);
