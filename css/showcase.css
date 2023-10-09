@@ -1,7 +1,7 @@
 .video-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 40px; /* Odstęp między elementami */
+  grid-gap: 40px; /* Spacing between elements */
   padding: 34px;
 }
 
@@ -9,13 +9,13 @@
   position: relative;
 }
 
- video {
+video {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Dodatkowe stylizacje dla elementów wideo */
+/* Additional styling for video elements */
 .video-item video {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -60,4 +60,15 @@
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 5px;
+}
+
+#last-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+}
+
+#last-video video {
+  max-width: 20%;
 }
