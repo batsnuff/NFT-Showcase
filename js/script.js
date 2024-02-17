@@ -54,6 +54,33 @@ window.onclick = function (event) {
   }
 };
 
+function closeModalsOnTouch() {
+  let startX, startY;
+
+  document.addEventListener('touchstart', function(e) {
+    startX = e.changedTouches[0].clientX;
+    startY = e.changedTouches[0].clientY;
+  });
+
+  document.addEventListener('touchend', function(e) {
+    let endX = e.changedTouches[0].clientX;
+    let endY = e.changedTouches[0].clientY;
+
+    let modal = document.getElementById("myModal");
+    let alreadyClickedModal = document.getElementById("alreadyClickedModal");
+
+    if (Math.abs(endX - startX) < 10 && Math.abs(endY - startY) < 10) {
+      if (modal.style.display === "block") {
+        modal.style.display = "none";
+      }
+      if (alreadyClickedModal.style.display === "block") {
+        alreadyClickedModal.style.display = "none";
+      }
+    }
+  });
+}
+
+
 incrementButton.addEventListener("click", incrementCounter);
 
 function changeVideoSpeed(speed) {
