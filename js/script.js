@@ -51,3 +51,13 @@ window.onclick = function (event) {
 };
 
 incrementButton.addEventListener("click", incrementCounter);
+
+function changeVideoSpeed(speed) {
+
+  const videos = document.querySelectorAll('video');
+
+  
+  videos.forEach(video => {
+    video.playbackRate = speed;
+  });
+}

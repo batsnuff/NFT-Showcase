@@ -71,6 +71,10 @@
       </div>
       <p class="header__text">Happy browsing!</p>
     </header>
+    <div class="header__buttons-container">
+      <button class="header__button" id="speedButton" onclick="changeVideoSpeed(1.5)">Zalecana prędkość oglądania x1.5</button>
+      <button class="header__button" id="speedButton" onclick="changeVideoSpeed(1)">Reset</button>
+    </div>
     <article>
       <div class="video-gallery">
         <div class="video-item">
@@ -79,7 +83,7 @@
             controls
             muted
             loop=""
-            loading="lazy"
+            autoplay
           ></video>
         </div>
         <div class="video-item">
