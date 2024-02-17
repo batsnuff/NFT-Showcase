@@ -14,11 +14,15 @@ function updateCounter() {
   counterElement.textContent = count;
 }
 
+
 // Check if the count value is already stored in localStorage
-if (localStorage.getItem("visitorCount")) {
-  count = parseInt(localStorage.getItem("visitorCount"));
+const storedCount = localStorage.getItem("visitorCount");
+
+if (storedCount) {
+  // If it's stored, use the stored value
+  count = parseInt(storedCount);
 } else {
-  // If it's not stored, save the count value in localStorage
+  // If it's not stored, save the initial count value in localStorage
   localStorage.setItem("visitorCount", count);
 }
 
