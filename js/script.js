@@ -83,12 +83,47 @@ function closeModalsOnTouch() {
 
 incrementButton.addEventListener("click", incrementCounter);
 
-function changeVideoSpeed(speed) {
+// Add event listener to the "Speed Up" button
+document.getElementById("speedButton").addEventListener("click", speedUpVideos);
 
-  const videos = document.querySelectorAll('video');
+// Function to speed up all videos on the page
+function speedUpVideos() {
+  // Find all video elements on the page
+  const videos = document.querySelectorAll("video");
 
-  
+  // Iterate through each video and set playbackRate to 1.5
   videos.forEach(video => {
-    video.playbackRate = speed;
+    video.playbackRate = 1.5;
+  });
+}
+
+
+
+// Add event listener to the "Play All" button
+document.getElementById("playAll").addEventListener("click", playAllVideos);
+
+// Function to play all videos on the page
+function playAllVideos() {
+  // Find all video elements on the page
+  const videos = document.querySelectorAll("video");
+
+  // Iterate through each video and play it
+  videos.forEach(video => {
+    video.play();
+  });
+}
+
+// Add event listener to the "Reset" button
+document.getElementById("resetButton").addEventListener("click", resetVideos);
+
+// Function to reset all videos on the page
+function resetVideos() {
+  // Find all video elements on the page
+  const videos = document.querySelectorAll("video");
+
+  // Iterate through each video and reset playbackRate to 1 and pause the video
+  videos.forEach(video => {
+    video.playbackRate = 1;
+    video.pause();
   });
 }
