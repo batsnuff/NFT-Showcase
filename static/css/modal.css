@@ -1,0 +1,382 @@
+/* Modern Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+  }
+}
+
+.modal-content {
+  position: relative;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(0, 0, 0, 0.98));
+  backdrop-filter: blur(25px);
+  margin: 10% auto;
+  padding: 3rem;
+  border: 2px solid var(--gold);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 215, 0, 0.3),
+    0 0 50px rgba(255, 215, 0, 0.2);
+  border-radius: 25px;
+  text-align: center;
+  animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Modal Background Effects */
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.modal-content::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--gold), var(--purple), var(--gold));
+  border-radius: 25px;
+  z-index: -2;
+  opacity: 0.3;
+  animation: modalBorderGlow 3s ease-in-out infinite;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modalBorderGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.modal-content:hover {
+  transform: scale(1.02);
+  box-shadow: 
+    0 30px 100px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(255, 215, 0, 0.5),
+    0 0 70px rgba(255, 215, 0, 0.3);
+}
+
+.modal-content p {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 
+    0 0 20px var(--gold),
+    0 0 40px var(--gold),
+    0 0 60px var(--gold);
+  animation: modalTextGlow 2s ease-in-out infinite alternate;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes modalTextGlow {
+  from {
+    text-shadow: 
+      0 0 20px var(--gold),
+      0 0 40px var(--gold),
+      0 0 60px var(--gold);
+  }
+  to {
+    text-shadow: 
+      0 0 30px var(--gold),
+      0 0 60px var(--gold),
+      0 0 90px var(--gold);
+  }
+}
+
+/* Modern Close Button */
+.close,
+.alreadyClickedClose {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: var(--gold);
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  z-index: 3;
+}
+
+.close::before,
+.alreadyClickedClose::before {
+  content: '×';
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--gold);
+  text-shadow: 0 0 10px var(--gold);
+}
+
+.close:hover,
+.close:focus,
+.alreadyClickedClose:hover,
+.alreadyClickedClose:focus {
+  color: var(--gold-hover);
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.6);
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.4),
+    0 0 0 2px rgba(255, 215, 0, 0.5);
+}
+
+/* Modal Success Animation */
+.modal.success .modal-content {
+  animation: modalSuccess 0.6s ease-out;
+}
+
+@keyframes modalSuccess {
+  0% { transform: scale(0.8) rotate(-5deg); }
+  50% { transform: scale(1.1) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Modal Error Animation */
+.modal.error .modal-content {
+  animation: modalError 0.6s ease-out;
+}
+
+@keyframes modalError {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Modal Entrance Effects */
+.modal.show {
+  display: block;
+}
+
+.modal.show .modal-content {
+  animation: modalEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5) rotateX(45deg);
+  }
+  50% {
+    transform: translateY(-20px) scale(0.9) rotateX(15deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+}
+
+/* Modal Exit Effects */
+.modal.hiding {
+  animation: modalFadeOut 0.3s ease-in forwards;
+}
+
+.modal.hiding .modal-content {
+  animation: modalSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes modalFadeOut {
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes modalSlideOut {
+  to {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+}
+
+/* Modal Loading State */
+.modal.loading .modal-content {
+  animation: modalLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes modalLoading {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Modal Success Icon */
+.modal.success .modal-content::before {
+  content: '✓';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--gold);
+  color: var(--deep-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: successIconBounce 0.6s ease-out 0.3s both;
+}
+
+@keyframes successIconBounce {
+  0% { transform: translateX(-50%) scale(0); opacity: 0; }
+  50% { transform: translateX(-50%) scale(1.2); }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Modal Error Icon */
+.modal.error .modal-content::before {
+  content: '⚠';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: #ff6b6b;
+  color: var(--deep-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: errorIconBounce 0.6s ease-out 0.3s both;
+}
+
+@keyframes errorIconBounce {
+  0% { transform: translateX(-50%) scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: translateX(-50%) scale(1.2) rotate(180deg); }
+  100% { transform: translateX(-50%) scale(1) rotate(360deg); opacity: 1; }
+}
+
+/* Modal Confetti Effect */
+.modal.success .modal-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.3) 0%, transparent 50%);
+  animation: modalConfetti 2s ease-out 0.5s both;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes modalConfetti {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 20% auto;
+    padding: 2rem;
+    width: 95%;
+    border-radius: 20px;
+  }
+  
+  .modal-content p {
+    font-size: 2rem;
+  }
+  
+  .close,
+  .alreadyClickedClose {
+    top: 15px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .close::before,
+  .alreadyClickedClose::before {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    margin: 30% auto;
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+  
+  .modal-content p {
+    font-size: 1.5rem;
+  }
+  
+  .close,
+  .alreadyClickedClose {
+    top: 10px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .close::before,
+  .alreadyClickedClose::before {
+    font-size: 1.5rem;
+  }
+}

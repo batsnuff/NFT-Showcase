@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="{{ url_for('static', filename='images/baner/NFT1.png') }}" />
+    <meta property="og:description" content="Showcase of my NFTs" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>NFT Showcase - Premium Collection</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon/NFT.png') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/normalize.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/showcase.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/header.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/footer.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/modal.css') }}" rel="stylesheet" />
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </head>
+
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-logo"></div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles">
+      <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+      <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+      <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+      <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+      <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+      <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+      <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+      <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- Admin Panel Link -->
+    <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+      <a href="/admin/stats" class="admin-link" title="Admin Panel - Visitor Statistics">
+        📊
+      </a>
+    </div>
+
+    <!-- Spotify Player -->
+    <div class="spotify-container glass">
+      <iframe
+        style="border-radius: 12px"
+        src="https://open.spotify.com/embed/playlist/44oTcZ54KzIaejuV2eN06m?utm_source=generator&theme=0"
+        target="_blank"
+        width="100%"
+        height="110"
+        frameborder="0"
+        allowfullscreen=""
+        allow=" ; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      ></iframe>
+    </div>
+
+    <header class="glass">
+      <h1 class="header__welcome" data-text="Welcome to NFT gallery!">Welcome to NFT gallery!</h1>
+      <p class="header__content">
+        I'm thrilled to have you here. Explore my stunning collection of digital
+        artworks, showcasing my ever-growing collection of Funko Pop figures.
+        Each piece is meticulously curated, contributing its own unique charm to
+        this vibrant assortment. Let your imagination run wild as you browse
+        through the captivating world of Funko Pop.
+      </p>
+      <p class="header__content">
+        If you want to enhance your experience with the sounds of exquisite jazz
+        music, there is a Spotify playlist at the top of the page that you can
+        play
+      </p>
+      <div class="video-gallery" id="last-video">
+        <video
+          src="{{ url_for('static', filename='images/RoyalPanda/pandas.mp4') }}"
+          controls=""
+          playsinline=""
+          loop=""
+          muted
+          autoplay
+        ></video>
+      </div>
+      <p class="header__text">Happy browsing!</p>
+    </header>
+    
+    <div class="header__buttons-container">
+      <button class="header__button hover-glow" id="playAll">
+        <span>🎬</span> Odtwórz wszystkie
+      </button>
+      <button class="header__button hover-glow" id="speedButton">
+        <span>⚡</span> Zalecana prędkość oglądania pojedynczo : x1.5
+      </button>
+      <button class="header__button hover-glow" id="resetButton">
+        <span>🔄</span> Reset
+      </button>
+    </div>
+    
+    <main>
+      <article class="video-gallery-container">
+        <div class="video-gallery">
+          {% for video in videos %}
+          <div class="video-item hover-glow" data-category="{{ video.category }}">
+            <video
+              src="{{ url_for('static', filename=video.src) }}"
+              controls
+              muted
+              loop=""
+              {% if video.autoplay %}autoplay{% endif %}
+            ></video>
+          </div>
+          {% endfor %}
+        </div>
+      </article>
+      
+      <div class="video-gallery" id="last-video">
+        <img
+          src="{{ url_for('static', filename='images/ModernDrummers/1.gif') }}"
+          alt="Modern Drummers Animation"
+          loading="lazy"
+        >
+      </div>
+    </main>
+    
+    <footer class="glass">
+      <div id="counter" class="text-glow">{{ visitor_count }}</div>
+      <p class="footer__text">
+        Thank you for exploring the gallery until the end. I would kindly ask
+        you to click the guest counter button. Please note that there is no
+        automatic visitor counter in order to avoid generating artificial views.
+        Your interaction is greatly appreciated.
+      </p>
+      <button id="incrementButton" class="hover-glow">
+        <span>👆</span> Guest counter
+      </button>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id="modalMessage">Thank you! 😁</p>
+        </div>
+      </div>
+
+      <div id="alreadyClickedModal" class="modal">
+        <div class="modal-content">
+          <span class="alreadyClickedClose">&times;</span>
+          <p>You did it! 😏</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top hover-glow" title="Scroll to top">
+      <span>↑</span>
+    </button>
+
+    <!-- Performance Indicator -->
+    <div class="performance-indicator" id="performanceIndicator">
+      <div class="performance-bar"></div>
+    </div>
+
+    <style>
+      .admin-link {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--purple), var(--accent-purple));
+        color: var(--gold);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        font-size: 1.5rem;
+        text-decoration: none;
+        box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .admin-link:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 15px 35px rgba(138, 43, 226, 0.4);
+        color: var(--gold);
+      }
+    </style>
+  </body>
+</html>

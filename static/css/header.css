@@ -1,0 +1,384 @@
+/* Modern Header Styles */
+header {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+/* Animated Background */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+.header__welcome {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--gold);
+  text-align: center;
+  padding: 2rem 0;
+  margin: 1rem 0;
+  text-shadow: 
+    0 0 20px var(--gold),
+    0 0 40px var(--gold),
+    0 0 60px var(--gold);
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 2;
+}
+
+.header__welcome::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--purple);
+  text-shadow: 
+    0 0 20px var(--purple),
+    0 0 40px var(--purple),
+    0 0 60px var(--purple);
+  animation: titleGlowPurple 2s ease-in-out infinite alternate-reverse;
+  z-index: -1;
+}
+
+@keyframes titleGlow {
+  from { filter: brightness(1) drop-shadow(0 0 20px var(--gold)); }
+  to { filter: brightness(1.2) drop-shadow(0 0 30px var(--gold)); }
+}
+
+@keyframes titleGlowPurple {
+  from { filter: brightness(1) drop-shadow(0 0 20px var(--purple)); }
+  to { filter: brightness(1.2) drop-shadow(0 0 30px var(--purple)); }
+}
+
+/* Header Welcome Hover Effect */
+.header__welcome:hover {
+  transform: scale(1.02);
+  animation: titleHover 0.6s ease-out;
+}
+
+@keyframes titleHover {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1.02); }
+}
+
+.header__content {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--text-purple);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin: 1rem 0;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: contentFadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Content Hover Effect */
+.header__content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.header__text {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--gold);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin: 1rem 0;
+  text-shadow: 
+    0 0 15px var(--gold),
+    0 0 30px var(--gold);
+  animation: textPulse 3s ease-in-out infinite;
+  position: relative;
+}
+
+.header__text::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: lineGlow 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes lineGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Header Text Hover Effect */
+.header__text:hover {
+  transform: scale(1.03);
+  animation: textHover 0.6s ease-out;
+}
+
+@keyframes textHover {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1.03); }
+}
+
+/* Modern Button Container */
+.header__buttons-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Modern Button Styles */
+.header__button {
+  position: relative;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--accent-purple) 100%);
+  border: none;
+  border-radius: 50px;
+  color: var(--gold);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 25px rgba(138, 43, 226, 0.3),
+    0 0 0 1px rgba(255, 215, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Emoji Styling */
+.header__button span {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+.header__button:hover span {
+  transform: scale(1.2) rotate(5deg);
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+.header__button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.header__button:hover::before {
+  left: 100%;
+}
+
+.header__button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 15px 35px rgba(138, 43, 226, 0.4),
+    0 0 0 2px rgba(255, 215, 0, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.3);
+  color: var(--gold-hover);
+}
+
+.header__button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.header__button:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(255, 215, 0, 0.5),
+    0 15px 35px rgba(138, 43, 226, 0.4);
+}
+
+/* Button Pulse Animation */
+.header__button.pulse {
+  animation: buttonPulse 0.6s ease-out;
+}
+
+@keyframes buttonPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Button Animations */
+.header__button:nth-child(1) { animation: buttonSlideIn 0.6s ease-out 0.8s both; }
+.header__button:nth-child(2) { animation: buttonSlideIn 0.6s ease-out 1s both; }
+.header__button:nth-child(3) { animation: buttonSlideIn 0.6s ease-out 1.2s both; }
+
+@keyframes buttonSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced Button Hover Effects */
+.header__button:hover {
+  background: linear-gradient(135deg, var(--purple-hover) 0%, var(--accent-purple) 100%);
+}
+
+.header__button:active {
+  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--purple) 100%);
+}
+
+/* Button Loading State */
+.header__button.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.header__button.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-top: 2px solid var(--gold);
+  border-radius: 50%;
+  animation: buttonSpin 1s linear infinite;
+}
+
+@keyframes buttonSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Button Success State */
+.header__button.success {
+  background: linear-gradient(135deg, #00ff88, #00cc6a);
+  animation: buttonSuccess 0.8s ease-out;
+}
+
+@keyframes buttonSuccess {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Button Error State */
+.header__button.error {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  animation: buttonError 0.6s ease-out;
+}
+
+@keyframes buttonError {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+  
+  .header__buttons-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  .header__button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .header__button span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__welcome {
+    font-size: 2rem;
+  }
+  
+  .header__content {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .header__text {
+    font-size: 1.2rem;
+  }
+  
+  .header__button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .header__button span {
+    font-size: 0.9rem;
+  }
+}

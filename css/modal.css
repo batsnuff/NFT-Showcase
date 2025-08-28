@@ -1,69 +1,493 @@
+/* ===== MODERN MODAL STYLES ===== */
+
+/* Modal Container */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 10000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(15px);
+  animation: modalFadeIn 0.3s ease-out;
 }
 
+/* Modal Content */
 .modal-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  margin: 10% auto;
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  background-color: #b7b0b0;
-  margin: 15% auto;
-  padding: 20px;
-  border: 3px solid #f1f1f1;
-  width: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation-name: modalAnimation;
-  animation-duration: 1.3s;
-  border-radius: 12px;
-  text-align: center;
-  transition: transform 0.3s;
+  overflow: hidden;
 }
 
-.modal-content:hover {
-  transform: scale(1.05);
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.modal-content p {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 50px;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px #000000;
+.modal-content:hover::before {
+  opacity: 1;
 }
 
+/* Modal Header */
+.modal-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 2rem 2rem 1.5rem;
+  border-radius: 25px 25px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.modal-header h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Close Button */
 .close,
 .alreadyClickedClose {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+  color: white;
+  font-size: 2.5rem;
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .close:hover,
-.close:focus,
-.alreadyClickedClose:hover,
-.alreadyClickedClose:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.alreadyClickedClose:hover {
+  transform: scale(1.2) rotate(90deg);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes modalAnimation {
-  0% {
-    transform: scale(0);
+.close:active,
+.alreadyClickedClose:active {
+  transform: scale(0.95);
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.modal-body p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* Modal Emoji */
+.modal-emoji {
+  font-size: 4rem;
+  animation: modalEmojiBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+/* Floating Particles */
+.modal-content::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
+  border-radius: 50%;
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+/* Success Modal Specific Styles */
+#myModal .modal-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+#myModal .modal-emoji {
+  animation: successEmoji 2s ease-in-out infinite;
+}
+
+/* Already Clicked Modal Specific Styles */
+#alreadyClickedModal .modal-header {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+#alreadyClickedModal .modal-emoji {
+  animation: alreadyClickedEmoji 2s ease-in-out infinite;
+}
+
+/* Modal Animations */
+@keyframes modalFadeIn {
+  from {
     opacity: 0;
   }
-  50% {
-    transform: scale(1.1);
+  to {
     opacity: 1;
   }
-  100% {
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes modalEmojiBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-10px) scale(1.1);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
+
+@keyframes successEmoji {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) scale(1.2) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) scale(1.1) rotate(-3deg);
+  }
+}
+
+@keyframes alreadyClickedEmoji {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-12px) scale(1.15) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-6px) scale(1.08) rotate(3deg);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Modal Entrance Effects */
+.modal.show {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal.show .modal-content {
+  animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Modal Exit Animations */
+.modal.hide {
+  animation: modalFadeOut 0.3s ease-in forwards;
+}
+
+.modal.hide .modal-content {
+  animation: modalSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+}
+
+/* Modal Overlay Effects */
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(102, 126, 234, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal:hover::before {
+  opacity: 1;
+}
+
+/* Interactive Elements */
+.modal-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 90px rgba(102, 126, 234, 0.3);
+}
+
+/* Focus States for Accessibility */
+.modal-content:focus-within {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+.close:focus,
+.alreadyClickedClose:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Loading State */
+.modal.loading .modal-content {
+  animation: modalLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes modalLoading {
+  0%, 100% {
     transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 20% auto;
+    width: 95%;
+    max-width: 400px;
+  }
+  
+  .modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+  
+  .modal-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .modal-body {
+    padding: 2rem 1.5rem;
+  }
+  
+  .modal-body p {
+    font-size: 1.1rem;
+  }
+  
+  .modal-emoji {
+    font-size: 3rem;
+  }
+  
+  .close,
+  .alreadyClickedClose {
+    font-size: 2rem;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    margin: 25% auto;
+    width: 98%;
+    border-radius: 20px;
+  }
+  
+  .modal-header {
+    padding: 1.2rem 1.2rem 0.8rem;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .modal-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .modal-body p {
+    font-size: 1rem;
+  }
+  
+  .modal-emoji {
+    font-size: 2.5rem;
+  }
+  
+  .close,
+  .alreadyClickedClose {
+    font-size: 1.8rem;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .modal-content {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .modal-header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .close,
+  .alreadyClickedClose {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal-content,
+  .modal-emoji,
+  .close,
+  .alreadyClickedClose {
+    animation: none;
+    transition: none;
+  }
+  
+  .modal-content::after {
+    animation: none;
+  }
+}
+
+/* Performance Optimizations */
+.modal-content {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.modal-emoji {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Custom Scrollbar for Modal Content */
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
+}
+
+/* Modal Backdrop Click Animation */
+.modal.clicked {
+  animation: modalBackdropClick 0.2s ease-out;
+}
+
+@keyframes modalBackdropClick {
+  0% {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.8);
   }
 }

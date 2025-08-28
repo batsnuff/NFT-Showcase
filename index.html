@@ -9,10 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <title>NFT Showcase</title>
+    <title>NFT Showcase - Digital Universe</title>
     <link rel="icon" href="images/icon/NFT.png" />
     <link
       rel="stylesheet"
@@ -28,343 +28,702 @@
     <link href="css/footer.css" rel="stylesheet" />
     <link href="css/modal.css" rel="stylesheet" />
     <script defer src="js/script.js"></script>
-    <div>
-      <iframe
-        style="border-radius: 12px"
-        src="https://open.spotify.com/embed/playlist/44oTcZ54KzIaejuV2eN06m?utm_source=generator&theme=0"
-        target="_blank"
-        width="100%"
-        height="110"
-        frameborder="0"
-        allowfullscreen=""
-        allow=" ; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-         
-      ></iframe>
-    </div>
   </head>
 
   <body>
-    <header>
-      <h1 class="header__welcome">Welcome to NFT gallery!</h1>
-      <p class="header__content">
-        I'm thrilled to have you here. Explore my stunning collection of digital
-        artworks, showcasing my ever-growing collection of Funko Pop figures.
-        Each piece is meticulously curated, contributing its own unique charm to
-        this vibrant assortment. Let your imagination run wild as you browse
-        through the captivating world of Funko Pop.
-      </p>
-      <p class="header__content">
-        If you want to enhance your experience with the sounds of exquisite jazz
-        music, there is a Spotify playlist at the top of the page that you can
-        play
-      </p>
-      <div class="video-gallery" id="last-video">
+    <!-- Animated Background -->
+    <div class="animated-background">
+      <div class="stars"></div>
+      <div class="twinkling"></div>
+      <div class="clouds"></div>
+    </div>
+
+    <!-- Floating Music Player -->
+    <div class="floating-music-player">
+      <div class="music-player-header">
+        <div class="music-icon">🎵</div>
+        <span>Jazz Vibes</span>
+        <button class="minimize-btn">−</button>
+      </div>
+      <div class="music-player-content">
+        <iframe
+          style="border-radius: 12px"
+          src="https://open.spotify.com/embed/playlist/44oTcZ54KzIaejuV2eN06m?utm_source=generator&theme=0"
+          width="100%"
+          height="110"
+          frameborder="0"
+          allowfullscreen=""
+          allow=" ; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-title">
+          <h1 class="glitch" data-text="NFT UNIVERSE">NFT UNIVERSE</h1>
+          <div class="hero-subtitle">
+            <span class="typing-text">Exploring Digital Dimensions</span>
+          </div>
+        </div>
+        <div class="hero-description">
+          <p>Welcome to the future of digital art. Experience my curated collection of Funko Pop NFTs in a completely new dimension.</p>
+        </div>
+        <div class="hero-cta">
+          <button class="cta-button primary">Explore Collection</button>
+          <button class="cta-button secondary">Learn More</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-cards">
+          <div class="card card-1"></div>
+          <div class="card card-2"></div>
+          <div class="card card-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Control Panel -->
+    <section class="control-panel">
+      <div class="control-grid">
+        <div class="control-item">
+          <button class="control-button" id="playAll">
+            <div class="button-icon">▶️</div>
+            <span>Play All</span>
+          </button>
+        </div>
+        <div class="control-item">
+          <button class="control-button" id="speedButton">
+            <div class="button-icon">⚡</div>
+            <span>Speed 1.5x</span>
+          </button>
+        </div>
+        <div class="control-item">
+          <button class="control-button" id="resetButton">
+            <div class="button-icon">🔄</div>
+            <span>Reset</span>
+          </button>
+        </div>
+        <div class="control-item">
+          <button class="control-button" id="viewMode">
+            <div class="button-icon">👁️</div>
+            <span>View Mode</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Showcase -->
+    <section class="featured-showcase">
+      <div class="section-header">
+        <h2 class="section-title">Featured Collection</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="featured-video">
         <video
           src="images/RoyalPanda/pandas.mp4"
-          =""
-          controls=""
-          playsinline=""
-          loop=""
+          controls
+          playsinline
+          loop
           muted
           autoplay
+          class="hero-video"
         ></video>
-      </div>
-      <p class="header__text">Happy browsing!</p>
-    </header>
-    <div class="header__buttons-container">
-      <button class="header__button" id="playAll">Odtwórz wszystkie</button>
-      <button class="header__button" id="speedButton">Zalecana prędkość oglądania pojedynczo : x1.5</button>
-      <button class="header__button" id="resetButton">Reset</button>
-    </div>
-    <article>
-      <div class="video-gallery">
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/WB Horror/WB Horror.mp4"
-            controls
-            muted
-            loop=""
-            autoplay
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/IT/IT.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Scooby Doo/Scooby-Dooo.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Adventure Time/Adventure Time.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Flintstones/Flintstones.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/DC/DC Superheroes.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/DC/DC Supervillain.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Teen Titans/Teen Titans.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Dungeon & Dragons/Dungeons & Dragons.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Avatar Legends/Avatar.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Looney Tunes/Looney Tunes.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Hanna Barbera/Hanna Barbera.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/WB100th/WB100th.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Harry Potter/Harry Potter.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Back To The Future/Back to the future.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Squid Games/Squid Games.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Power Rangers/Power Rangers.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Stranger Things/Stranger Things.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Games of Thrones/Game of Thrones.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Matrix/Matrix.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Jurasic Park/Jurasic Park.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Retro/Retro comics.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Nicktoones/Nicktoones.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Plastic Fantastic/Plastic Fantastic.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Star Trek/Star Trek.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/April's Fools/April Fools.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Halloween/Halloween.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
-        </div>
-        <div class="video-item">
-          <video
-            src="images/Funko Pop/Bob Ross/Bob Ross.mp4"
-            controls
-            muted
-            loop=""
-             
-          ></video>
+        <div class="video-overlay">
+          <div class="video-info">
+            <h3>Royal Panda Collection</h3>
+            <p>Exclusive digital art pieces</p>
+          </div>
         </div>
       </div>
-    </article>
-    <div class="video-gallery" id="last-video">
-      <img
-        src="images/ModernDrummers/1.gif"
-        =""
-        playsinline=""
-        loop=""
-        muted
-        autoplay
-      >
-    </div>
-    <footer>
-      <div id="counter">0</div>
-      <p class="footer__text">
-        Thank you for exploring the gallery until the end. I would kindly ask
-        you to click the guest counter button. Please note that there is no
-        automatic visitor counter in order to avoid generating artificial views.
-        Your interaction is greatly appreciated.
-      </p>
-      <button id="incrementButton">Guest counter</button>
+    </section>
 
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Thank you! 😁</p>
-        </div>
+    <!-- NFT Gallery -->
+    <section class="nft-gallery">
+      <div class="section-header">
+        <h2 class="section-title">Digital Art Gallery</h2>
+        <div class="section-line"></div>
+        <p class="section-description">Immerse yourself in the world of Funko Pop NFTs</p>
+      </div>
+      
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="horror">Horror</button>
+        <button class="filter-btn" data-category="fantasy">Fantasy</button>
+        <button class="filter-btn" data-category="sci-fi">Sci-Fi</button>
+        <button class="filter-btn" data-category="classic">Classic</button>
       </div>
 
-      <div id="alreadyClickedModal" class="modal">
-        <div class="modal-content">
-          <span class="alreadyClickedClose">&times;</span>
-          <p>You did it! 😏</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- WB Horror -->
+        <div class="gallery-item" data-category="horror">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/WB Horror/WB Horror.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>WB Horror</h3>
+              <p>Classic horror collection</p>
+            </div>
+          </div>
         </div>
+
+        <!-- IT -->
+        <div class="gallery-item" data-category="horror">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/IT/IT.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>IT</h3>
+              <p>Pennywise collection</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scooby Doo -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Scooby Doo/Scooby-Dooo.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Scooby Doo</h3>
+              <p>Mystery gang</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Adventure Time -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Adventure Time/Adventure Time.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Adventure Time</h3>
+              <p>Mathematical adventures</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flintstones -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Flintstones/Flintstones.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Flintstones</h3>
+              <p>Stone age family</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DC Superheroes -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/DC/DC Superheroes.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>DC Superheroes</h3>
+              <p>Justice League</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DC Supervillain -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/DC/DC Supervillain.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>DC Supervillains</h3>
+              <p>Dark side of DC</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teen Titans -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Teen Titans/Teen Titans.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Teen Titans</h3>
+              <p>Young heroes</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dungeons & Dragons -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Dungeon & Dragons/Dungeons & Dragons.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>D&D</h3>
+              <p>Fantasy adventures</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar Legends -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Avatar Legends/Avatar.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Avatar</h3>
+              <p>Elemental bending</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Looney Tunes -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Looney Tunes/Looney Tunes.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Looney Tunes</h3>
+              <p>Classic cartoons</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hanna Barbera -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Hanna Barbera/Hanna Barbera.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Hanna Barbera</h3>
+              <p>Animation legends</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WB100th -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/WB100th/WB100th.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>WB 100th</h3>
+              <p>Century celebration</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Harry Potter -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Harry Potter/Harry Potter.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Harry Potter</h3>
+              <p>Wizarding world</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back to the Future -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Back To The Future/Back to the future.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Back to the Future</h3>
+              <p>Time travel adventures</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Squid Games -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Squid Games/Squid Games.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Squid Games</h3>
+              <p>Survival games</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Power Rangers -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Power Rangers/Power Rangers.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Power Rangers</h3>
+              <p>Mighty morphin</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stranger Things -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Stranger Things/Stranger Things.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Stranger Things</h3>
+              <p>Upside down</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game of Thrones -->
+        <div class="gallery-item" data-category="fantasy">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Games of Thrones/Game of Thrones.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Game of Thrones</h3>
+              <p>Iron throne</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matrix -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Matrix/Matrix.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Matrix</h3>
+              <p>Digital reality</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jurassic Park -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Jurasic Park/Jurasic Park.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Jurassic Park</h3>
+              <p>Dinosaur world</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retro Comics -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Retro/Retro comics.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Retro Comics</h3>
+              <p>Vintage heroes</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nicktoons -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Nicktoones/Nicktoones.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Nicktoons</h3>
+              <p>Nickelodeon classics</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plastic Fantastic -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Plastic Fantastic/Plastic Fantastic.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Plastic Fantastic</h3>
+              <p>Plastic art</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Star Trek -->
+        <div class="gallery-item" data-category="sci-fi">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Star Trek/Star Trek.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Star Trek</h3>
+              <p>Space exploration</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- April's Fools -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/April's Fools/April Fools.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>April's Fools</h3>
+              <p>Prank collection</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Halloween -->
+        <div class="gallery-item" data-category="horror">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Halloween/Halloween.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Halloween</h3>
+              <p>Spooky season</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bob Ross -->
+        <div class="gallery-item" data-category="classic">
+          <div class="item-container">
+            <video
+              src="images/Funko Pop/Bob Ross/Bob Ross.mp4"
+              controls
+              muted
+              loop
+              class="gallery-video"
+            ></video>
+            <div class="item-overlay">
+              <h3>Bob Ross</h3>
+              <p>Happy little trees</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Collection -->
+    <section class="special-collection">
+      <div class="section-header">
+        <h2 class="section-title">Special Collection</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="special-item">
+        <img
+          src="images/ModernDrummers/1.gif"
+          alt="Modern Drummers"
+          class="special-image"
+        />
+        <div class="special-content">
+          <h3>Modern Drummers</h3>
+          <p>Rhythm and beats collection</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Visitor Counter</h3>
+          <div class="counter-display">
+            <span id="counter">0</span>
+            <span class="counter-label">visitors</span>
+          </div>
+          <button id="incrementButton" class="counter-button">
+            <span class="button-text">Count Me In</span>
+            <div class="button-particles"></div>
+          </button>
+        </div>
+        
+        <div class="footer-section">
+          <h3>About This Gallery</h3>
+          <p>Thank you for exploring our digital universe. Each click on the counter represents a real visitor, maintaining authenticity in our community.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Discord</a>
+            <a href="#" class="social-link">OpenSea</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 NFT Universe. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- Modals -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Welcome to the Universe! 🌟</h3>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p>Thank you for joining our digital community! Your visit has been recorded.</p>
+          <div class="modal-emoji">🚀</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="alreadyClickedModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Already Counted! 😏</h3>
+          <span class="alreadyClickedClose">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p>You've already been counted as a visitor. Thanks for coming back!</p>
+          <div class="modal-emoji">🎭</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-content">
+        <div class="loading-logo">NFT</div>
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+        <div class="loading-text">Initializing Digital Universe...</div>
+      </div>
+    </div>
   </body>
 </html>
