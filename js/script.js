@@ -34,6 +34,12 @@ function initializeApp() {
     // Initialize counter
     initializeCounter();
     
+    // Initialize click-to-play functionality first
+    initializeClickToPlay();
+    
+    // Initialize random collections in background cards
+    updateRandomCards();
+    
     // Initialize event listeners
     initializeEventListeners();
     
@@ -43,10 +49,8 @@ function initializeApp() {
     // Initialize gallery filters
     initializeGalleryFilters();
     
-    // Hide loading screen after everything is ready
-    setTimeout(() => {
-        hideLoadingScreen();
-    }, 2000);
+    // Wait for all media files to load
+    waitForAllMediaToLoad();
 }
 
 // ===== LOADING SCREEN =====
@@ -60,6 +64,91 @@ function hideLoadingScreen() {
     setTimeout(() => {
         loadingScreen.style.display = 'none';
     }, 500);
+}
+
+// ===== MEDIA LOADING SYSTEM =====
+function waitForAllMediaToLoad() {
+    const videos = document.querySelectorAll('video');
+    const images = document.querySelectorAll('img');
+    const iframes = document.querySelectorAll('iframe');
+    
+    let totalMedia = videos.length + images.length + iframes.length;
+    let loadedMedia = 0;
+    
+    // Update loading progress
+    function updateLoadingProgress() {
+        const progress = (loadedMedia / totalMedia) * 100;
+        const progressBar = document.querySelector('.loading-progress');
+        const loadingText = document.querySelector('.loading-text');
+        
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        if (loadingText) {
+            loadingText.textContent = `Loading media files... ${Math.round(progress)}%`;
+        }
+        
+        if (loadedMedia >= totalMedia) {
+            setTimeout(() => {
+                hideLoadingScreen();
+            }, 500);
+        }
+    }
+    
+    // Handle video loading
+    videos.forEach(video => {
+        if (video.readyState >= 3) { // HAVE_FUTURE_DATA
+            loadedMedia++;
+            updateLoadingProgress();
+        } else {
+            video.addEventListener('canplaythrough', () => {
+                loadedMedia++;
+                updateLoadingProgress();
+            });
+            video.addEventListener('error', () => {
+                loadedMedia++;
+                updateLoadingProgress();
+            });
+        }
+    });
+    
+    // Handle image loading
+    images.forEach(img => {
+        if (img.complete) {
+            loadedMedia++;
+            updateLoadingProgress();
+        } else {
+            img.addEventListener('load', () => {
+                loadedMedia++;
+                updateLoadingProgress();
+            });
+            img.addEventListener('error', () => {
+                loadedMedia++;
+                updateLoadingProgress();
+            });
+        }
+    });
+    
+    // Handle iframe loading (Spotify player)
+    iframes.forEach(iframe => {
+        iframe.addEventListener('load', () => {
+            loadedMedia++;
+            updateLoadingProgress();
+        });
+        iframe.addEventListener('error', () => {
+            loadedMedia++;
+            updateLoadingProgress();
+        });
+    });
+    
+    // Fallback timeout in case some media fails to load
+    setTimeout(() => {
+        if (loadedMedia < totalMedia) {
+            console.log('Some media files failed to load, proceeding anyway...');
+            hideLoadingScreen();
+        }
+    }, 10000); // 10 second timeout
 }
 
 // ===== COUNTER SYSTEM =====
@@ -171,8 +260,7 @@ function hideModal(modalElement) {
 function initializeMusicPlayer() {
     minimizeBtn.addEventListener('click', toggleMusicPlayer);
     
-    // Make music player draggable
-    makeDraggable(musicPlayer);
+    // Music player is now fixed in position - no dragging
 }
 
 function toggleMusicPlayer() {
@@ -189,81 +277,15 @@ function toggleMusicPlayer() {
     }
 }
 
-function makeDraggable(element) {
-    let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
-    let xOffset = 0;
-    let yOffset = 0;
-    
-    element.addEventListener('mousedown', dragStart);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
-    
-    function dragStart(e) {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-        
-        if (e.target === element) {
-            isDragging = true;
-        }
-    }
-    
-    function drag(e) {
-        if (isDragging) {
-            e.preventDefault();
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
-            
-            xOffset = currentX;
-            yOffset = currentY;
-            
-            setTranslate(currentX, currentY, element);
-        }
-    }
-    
-    function dragEnd() {
-        initialX = currentX;
-        initialY = currentY;
-        isDragging = false;
-    }
-    
-    function setTranslate(xPos, yPos, el) {
-        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
-    }
-}
+
 
 // ===== VIDEO CONTROLS =====
 function initializeVideoControls() {
-    // Play All Videos
-    document.getElementById("playAll").addEventListener("click", playAllVideos);
-    
     // Speed Up Videos
     document.getElementById("speedButton").addEventListener("click", speedUpVideos);
     
-    // Reset Videos
-    document.getElementById("resetButton").addEventListener("click", resetVideos);
-    
     // View Mode Toggle
     viewModeButton.addEventListener("click", toggleViewMode);
-}
-
-function playAllVideos() {
-    const videos = document.querySelectorAll("video");
-    let delay = 0;
-    
-    videos.forEach((video, index) => {
-        setTimeout(() => {
-            video.play();
-            addVideoPlayEffect(video);
-        }, delay);
-        delay += 100; // Stagger the start
-    });
-    
-    // Add button feedback
-    addButtonFeedback(document.getElementById("playAll"));
 }
 
 function speedUpVideos() {
@@ -275,19 +297,6 @@ function speedUpVideos() {
     });
     
     addButtonFeedback(document.getElementById("speedButton"));
-}
-
-function resetVideos() {
-    const videos = document.querySelectorAll("video");
-    
-    videos.forEach((video) => {
-        video.playbackRate = 1;
-        video.pause();
-        video.currentTime = 0;
-        addVideoResetEffect(video);
-    });
-    
-    addButtonFeedback(document.getElementById("resetButton"));
 }
 
 function toggleViewMode() {
@@ -304,6 +313,153 @@ function toggleViewMode() {
     }
     
     addButtonFeedback(viewModeButton);
+}
+
+// ===== RANDOM COLLECTIONS =====
+const collections = [
+    { src: "images/Funko Pop/WB Horror/WB Horror.mp4", title: "WB Horror", description: "Classic horror collection" },
+    { src: "images/Funko Pop/IT/IT.mp4", title: "IT", description: "Pennywise collection" },
+    { src: "images/Funko Pop/Scooby Doo/Scooby-Dooo.mp4", title: "Scooby Doo", description: "Mystery gang" },
+    { src: "images/Funko Pop/Adventure Time/Adventure Time.mp4", title: "Adventure Time", description: "Mathematical adventures" },
+    { src: "images/Funko Pop/Flintstones/Flintstones.mp4", title: "Flintstones", description: "Stone age family" },
+    { src: "images/Funko Pop/DC/DC Superheroes.mp4", title: "DC Superheroes", description: "Justice League" },
+    { src: "images/Funko Pop/DC/DC Supervillain.mp4", title: "DC Supervillains", description: "Dark side of DC" },
+    { src: "images/Funko Pop/Teen Titans/Teen Titans.mp4", title: "Teen Titans", description: "Young heroes" },
+    { src: "images/Funko Pop/Dungeon & Dragons/Dungeons & Dragons.mp4", title: "D&D", description: "Fantasy adventures" },
+    { src: "images/Funko Pop/Avatar Legends/Avatar.mp4", title: "Avatar", description: "Elemental bending" },
+    { src: "images/Funko Pop/Looney Tunes/Looney Tunes.mp4", title: "Looney Tunes", description: "Classic cartoons" },
+    { src: "images/Funko Pop/Hanna Barbera/Hanna Barbera.mp4", title: "Hanna Barbera", description: "Animation legends" },
+    { src: "images/Funko Pop/WB100th/WB100th.mp4", title: "WB 100th", description: "Century celebration" },
+    { src: "images/Funko Pop/Back To The Future/Back to the future.mp4", title: "Back to the Future", description: "Time travel adventures" },
+    { src: "images/Funko Pop/Squid Games/Squid Games.mp4", title: "Squid Games", description: "Survival games" },
+    { src: "images/Funko Pop/Power Rangers/Power Rangers.mp4", title: "Power Rangers", description: "Mighty morphin" },
+    { src: "images/Funko Pop/Stranger Things/Stranger Things.mp4", title: "Stranger Things", description: "Upside down" },
+    { src: "images/Funko Pop/Games of Thrones/Game of Thrones.mp4", title: "Game of Thrones", description: "Iron throne" },
+    { src: "images/Funko Pop/Matrix/Matrix.mp4", title: "Matrix", description: "Digital reality" },
+    { src: "images/Funko Pop/Jurasic Park/Jurasic Park.mp4", title: "Jurassic Park", description: "Dinosaur world" },
+    { src: "images/Funko Pop/Retro/Retro comics.mp4", title: "Retro Comics", description: "Vintage heroes" },
+    { src: "images/Funko Pop/Nicktoones/Nicktoones.mp4", title: "Nicktoons", description: "Nickelodeon classics" },
+    { src: "images/Funko Pop/Plastic Fantastic/Plastic Fantastic.mp4", title: "Plastic Fantastic", description: "Plastic art" },
+    { src: "images/Funko Pop/Star Trek/Star Trek.mp4", title: "Star Trek", description: "Space exploration" },
+    { src: "images/Funko Pop/April's Fools/April Fools.mp4", title: "April's Fools", description: "Prank collection" },
+    { src: "images/Funko Pop/Halloween/Halloween.mp4", title: "Halloween", description: "Spooky season" },
+    { src: "images/Funko Pop/Bob Ross/Bob Ross.mp4", title: "Bob Ross", description: "Happy little trees" }
+];
+
+function getRandomCollections() {
+    // Shuffle array and pick 2 random collections
+    const shuffled = [...collections].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 2);
+}
+
+function updateRandomCards() {
+    const randomCollections = getRandomCollections();
+    
+    // Update card 1
+    const card1 = document.querySelector('.card-1');
+    if (card1 && randomCollections[0]) {
+        const video = card1.querySelector('.card-video');
+        const overlay = card1.querySelector('.card-overlay');
+        
+        if (video) {
+            video.src = randomCollections[0].src;
+        }
+        if (overlay) {
+            overlay.querySelector('h3').textContent = randomCollections[0].title;
+            overlay.querySelector('p').textContent = randomCollections[0].description;
+        }
+    }
+    
+    // Update card 2
+    const card2 = document.querySelector('.card-2');
+    if (card2 && randomCollections[1]) {
+        const video = card2.querySelector('.card-video');
+        const overlay = card2.querySelector('.card-overlay');
+        
+        if (video) {
+            video.src = randomCollections[1].src;
+        }
+        if (overlay) {
+            overlay.querySelector('h3').textContent = randomCollections[1].title;
+            overlay.querySelector('p').textContent = randomCollections[1].description;
+        }
+    }
+    
+    // Card 3 keeps Royal Panda Collection (no changes needed)
+}
+
+// ===== CLICK TO PLAY FUNCTIONALITY =====
+function initializeClickToPlay() {
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach(video => {
+        // Remove default controls
+        video.controls = false;
+        
+        // Add click event listener
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+        
+        // Add visual feedback on hover
+        video.style.cursor = 'pointer';
+        
+        // Add play overlay when paused
+        const overlay = document.createElement('div');
+        overlay.className = 'video-play-overlay';
+        overlay.innerHTML = '▶️';
+        overlay.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 10;
+        `;
+        
+        // Make video container relative for overlay positioning
+        const container = video.parentNode;
+        if (container.classList.contains('item-container')) {
+            container.style.position = 'relative';
+            container.appendChild(overlay);
+        }
+        
+        // Show/hide overlay based on video state
+        video.addEventListener('play', () => {
+            overlay.style.opacity = '0';
+        });
+        
+        video.addEventListener('pause', () => {
+            overlay.style.opacity = '1';
+        });
+        
+        // Initial state - check if video has autoplay
+        if (video.hasAttribute('autoplay')) {
+            // For autoplay videos, start with overlay hidden
+            overlay.style.opacity = '0';
+        } else {
+            // For non-autoplay videos, show overlay if paused
+            if (video.paused) {
+                overlay.style.opacity = '1';
+            } else {
+                overlay.style.opacity = '0';
+            }
+        }
+    });
 }
 
 // ===== GALLERY FILTERS =====
@@ -481,20 +637,8 @@ function initializeTouchEvents() {
 
 // ===== PERFORMANCE OPTIMIZATIONS =====
 function optimizePerformance() {
-    // Lazy load videos
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const video = entry.target;
-                video.src = video.dataset.src;
-                videoObserver.unobserve(video);
-            }
-        });
-    });
-    
-    document.querySelectorAll('video[data-src]').forEach(video => {
-        videoObserver.observe(video);
-    });
+    // All media files are now loaded immediately without lazy loading
+    console.log('Performance optimization: All media files loaded immediately');
 }
 
 // ===== UTILITY FUNCTIONS =====
